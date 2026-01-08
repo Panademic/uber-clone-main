@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 
 export const SocketContext = createContext();
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = import.meta.env.BACKEND_URL;
 
 const SocketProvider = ({ children }) => {
     const socket = useMemo(() => {

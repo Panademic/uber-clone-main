@@ -17,7 +17,7 @@ function initializeSocket(server) {
     });
 
     io.on('connection', (socket) => {
-        console.log(`🟢 Client connected: ${socket.id}`);
+        console.log(`Client connected: ${socket.id}`);
 
         socket.on('join', async (data) => {
             const { userId, userType } = data;
@@ -45,7 +45,7 @@ function initializeSocket(server) {
         });
 
         socket.on('disconnect', () => {
-            console.log(`🔴 Client disconnected: ${socket.id}`);
+            console.log(`Client disconnected: ${socket.id}`);
         });
     });
 }

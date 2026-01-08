@@ -9,7 +9,6 @@ function connectToDb() {
         process.exit(1);
     }
 
-    // Remove quotes if present
     const connectionString = uri.trim().replace(/^["']|["']$/g, '');
 
     mongoose.connect(connectionString, {

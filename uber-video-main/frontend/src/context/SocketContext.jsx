@@ -1,12 +1,16 @@
-import React, { createContext, useEffect } from 'react';
+import React, { createContext, useEffect, useMemo } from 'react';
 import { io } from 'socket.io-client';
 
 export const SocketContext = createContext();
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const SocketProvider = ({ children }) => {
-    const socket = import.meta.env.DEV 
-        ? io('http://localhost:3000')                    
-        : io(import.meta.env.VITE_BACKEND_URL || '');   
+    const socket = useMemo(() => {
+        return io(BACKEND_URL, {
+            transports: ['websocket'],
+        });
+    }, []);
 
     useEffect(() => {
         socket.on('connect', () => {
@@ -17,10 +21,8 @@ const SocketProvider = ({ children }) => {
             console.log('❌ Disconnected from server');
         });
 
-        // Cleanup on unmount
         return () => {
-            socket.off('connect');
-            socket.off('disconnect');
+            socket.disconnect();
         };
     }, [socket]);
 

@@ -21,7 +21,7 @@ const UserLogin = () => {
     setIsLoading(true)
 
     try {
-      const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+      const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
 
       const userData = {
         email: email,

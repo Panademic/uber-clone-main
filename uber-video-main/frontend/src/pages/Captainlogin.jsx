@@ -22,7 +22,7 @@ const Captainlogin = () => {
     setIsLoading(true)
 
     try {
-      const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+      const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
 
       const captain = {
         email: email,
@@ -58,7 +58,8 @@ const Captainlogin = () => {
           setError(`Login failed: ${JSON.stringify(err.response.data)}`)
         }
       } else if (err.code === 'ERR_NETWORK' || err.message.includes('Network Error')) {
-        setError('Unable to connect to server. Please make sure the backend is running on http://localhost:3000')
+        const backendURL = import.meta.env.BACKEND_URL || 'http://localhost:3000';
+        setError(`Unable to connect to server: ${backendURL}`);
       } else {
         setError(`Login failed: ${err.message}`)
       }

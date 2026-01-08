@@ -44,7 +44,7 @@ const CaptainSignup = () => {
         }
       }
 
-      const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+      const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
       console.log('Captain signup request:', { baseURL, captainData })
 
       const response = await axios.post(`${baseURL}/captains/register`, captainData)

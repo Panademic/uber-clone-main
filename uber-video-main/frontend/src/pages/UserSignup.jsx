@@ -32,7 +32,7 @@ const UserSignup = () => {
         password: password
       }
 
-      const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+      const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
       console.log('Signup request:', { baseURL, newUser })
       const response = await axios.post(`${baseURL}/users/register`, newUser)
 
@@ -70,13 +70,14 @@ const UserSignup = () => {
           setError(`Signup failed: ${JSON.stringify(err.response.data)}`)
         }
       } else if (err.code === 'ERR_NETWORK' || err.message.includes('Network Error')) {
-        setError('Unable to connect to server. Please make sure the backend is running on http://localhost:3000')
-      } else {
-        setError(`Signup failed: ${err.message}`)
+          const backendURL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3000'
+          setError(`Cannot connect to backend: ${backendURL}`)
+        } else {
+          setError(`Signup failed: ${err.message}`)
+        }
+      } finally {
+        setIsLoading(false)
       }
-      setIsLoading(false)
-      // Don't clear form fields on error - let user see what they entered
-    }
   }
   return (
     <div>

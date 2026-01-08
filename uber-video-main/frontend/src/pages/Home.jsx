@@ -79,7 +79,7 @@ const Home = () => {
         }
 
         try {
-            const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+            const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
             const response = await axios.get(`${baseURL}/maps/get-suggestions`, {
                 params: { input: value },
                 headers: {
@@ -103,7 +103,7 @@ const Home = () => {
         }
 
         try {
-            const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+            const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
             const response = await axios.get(`${baseURL}/maps/get-suggestions`, {
                 params: { input: value },
                 headers: {
@@ -235,7 +235,7 @@ const Home = () => {
         setVehiclePanel(true)
 
         try {
-            const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+            const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
             const response = await axios.get(`${baseURL}/rides/get-fare`, {
                 params: { pickup, destination },
                 headers: {
@@ -251,7 +251,7 @@ const Home = () => {
 
     async function createRide() {
         try {
-            const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+            const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
             await axios.post(`${baseURL}/rides/create`, {
                 pickup,
                 destination,

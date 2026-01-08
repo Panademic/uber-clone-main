@@ -74,7 +74,7 @@ const CaptainHome = () => {
         }
 
         try {
-            const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3000'
+            const baseURL = import.meta.env.BACKEND_URL || 'http://localhost:3000'
             await axios.post(`${baseURL}/rides/confirm`, {
                 rideId: ride._id,
                 captainId: captain._id,

@@ -12,13 +12,12 @@ function connectToDb() {
     // Remove quotes if present
     const connectionString = uri.trim().replace(/^["']|["']$/g, '');
 
-    mongoose
-        .connect(connectionString, {
+    mongoose.connect(connectionString, {
             serverSelectionTimeoutMS: 10000,
             socketTimeoutMS: 45000,
         })
         .then(() => {
-            console.log('✓ Connected to MongoDB');
+            console.log('Connected to MongoDB');
             console.log(`  Database: ${mongoose.connection.db.databaseName}`);
         })
         .catch((err) => {
@@ -39,7 +38,7 @@ function connectToDb() {
             }
             
             process.exit(1);
-        });
+        });    
 }
 
 module.exports = connectToDb;
